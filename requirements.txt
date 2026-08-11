@@ -1,0 +1,22 @@
+# Datahantering
+pandas>=2.2
+numpy>=1.26
+
+# Hämta data från API:er
+requests>=2.32
+tqdm>=4.66
+
+# Databas
+SQLAlchemy>=2.0
+
+# Hemliga nycklar
+python-dotenv>=1.0
+
+# Maskininlärning (dag 5)
+scikit-learn>=1.5
+
+# Diagram medan vi bygger
+matplotlib>=3.9
+
+# LLM-anrop (dag 4)
+anthropic>=0.39
