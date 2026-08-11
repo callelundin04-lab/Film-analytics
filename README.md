@@ -68,11 +68,15 @@ film-analytics/
 ├── data/
 │   └── raw/              # nedladdad rådata (gitignorerad)
 ├── src/
-│   └── 01_check_setup.py # verifierar miljön
+│   ├── db.py                 # delade databashjälpfunktioner
+│   ├── 01_check_setup.py     # verifierar miljön
+│   ├── 02_load_movielens.py  # ETL: MovieLens → SQLite
+│   └── 03_fetch_tmdb.py      # ETL: TMDB API → SQLite
 ├── notebooks/            # utforskande analys
 ├── .env.example          # mall för API-nycklar
 ├── requirements.txt
 ├── DAG1.md               # installationsguide
+├── DAG2.md               # ETL-guide
 └── README.md
 ```
 
