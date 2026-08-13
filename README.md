@@ -38,7 +38,7 @@ TMDB API + MovieLens 25M + egna betyg
 | Databas | SQLite, SQLAlchemy, SQL |
 | Maskininlärning | scikit-learn |
 | LLM | Anthropic Claude API |
-| Visualisering | Power BI, matplotlib |
+| Visualisering | Power BI Service, matplotlib |
 | Versionshantering | Git |
 
 ## Datakällor
@@ -71,20 +71,36 @@ film-analytics/
 │   ├── db.py                 # delade databashjälpfunktioner
 │   ├── 01_check_setup.py     # verifierar miljön
 │   ├── 02_load_movielens.py  # ETL: MovieLens → SQLite
-│   └── 03_fetch_tmdb.py      # ETL: TMDB API → SQLite
+│   ├── 03_fetch_tmdb.py      # ETL: TMDB API → SQLite
+│   ├── 04_build_views.py     # stjärnschema + analysvyer
+│   └── 05_quality_checks.py  # 18 datakvalitetskontroller
 ├── notebooks/            # utforskande analys
 ├── .env.example          # mall för API-nycklar
 ├── requirements.txt
 ├── DAG1.md               # installationsguide
 ├── DAG2.md               # ETL-guide
+├── DAG3.md               # datamodelleringsguide
 └── README.md
 ```
+
+## Datamodell
+
+Stjärnschema, byggt som SQL-vyer ovanpå de inlästa tabellerna:
+
+```
+              dim_date
+                  |
+   dim_genre — fact_ratings — dim_movie
+```
+
+All transformationslogik ligger i SQL-vyer, inte i rapportverktyget. Det gör
+den återanvändbar oavsett vilket BI-verktyg som läser databasen.
 
 ## Framsteg
 
 - [x] **Dag 1** — Miljö, projektstruktur, Git
-- [ ] **Dag 2** — ETL: MovieLens + TMDB → databas
-- [ ] **Dag 3** — SQL-modellering: schema, joins, vyer
+- [x] **Dag 2** — ETL: MovieLens + TMDB → databas
+- [ ] **Dag 3** — Datamodellering: stjärnschema, vyer, kvalitetskontroller
 - [ ] **Dag 4** — AI-lager 1: LLM-baserad feature-extraktion
 - [ ] **Dag 5** — AI-lager 2: betygsprediktionsmodell
 - [ ] **Dag 6** — Power BI-dashboard
